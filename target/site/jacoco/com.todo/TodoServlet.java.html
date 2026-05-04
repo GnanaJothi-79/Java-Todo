@@ -10,45 +10,45 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-<span class="nc" id="L13">public class TodoServlet extends HttpServlet {</span>
+<span class="fc" id="L13">public class TodoServlet extends HttpServlet {</span>
 
     private static final long serialVersionUID = 1L;
 
-<span class="nc" id="L17">    List&lt;String&gt; tasks = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L17">    List&lt;String&gt; tasks = new ArrayList&lt;&gt;();</span>
 
     // Display tasks
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-<span class="nc" id="L24">        response.setContentType(&quot;text/html&quot;);</span>
-<span class="nc" id="L25">        PrintWriter out = response.getWriter();</span>
+<span class="fc" id="L24">        response.setContentType(&quot;text/html&quot;);</span>
+<span class="fc" id="L25">        PrintWriter out = response.getWriter();</span>
 
-<span class="nc" id="L27">        out.println(&quot;&lt;h2&gt;Todo List&lt;/h2&gt;&quot;);</span>
+<span class="fc" id="L27">        out.println(&quot;&lt;h2&gt;Todo List&lt;/h2&gt;&quot;);</span>
 
-<span class="nc" id="L29">        out.println(&quot;&lt;form method='post'&gt;&quot;);</span>
-<span class="nc" id="L30">        out.println(&quot;Enter Task: &lt;input type='text' name='task'/&gt;&quot;);</span>
-<span class="nc" id="L31">        out.println(&quot;&lt;input type='submit' value='Add'/&gt;&quot;);</span>
-<span class="nc" id="L32">        out.println(&quot;&lt;/form&gt;&quot;);</span>
+<span class="fc" id="L29">        out.println(&quot;&lt;form method='post'&gt;&quot;);</span>
+<span class="fc" id="L30">        out.println(&quot;Enter Task: &lt;input type='text' name='task'/&gt;&quot;);</span>
+<span class="fc" id="L31">        out.println(&quot;&lt;input type='submit' value='Add'/&gt;&quot;);</span>
+<span class="fc" id="L32">        out.println(&quot;&lt;/form&gt;&quot;);</span>
 
-<span class="nc" id="L34">        out.println(&quot;&lt;h3&gt;Tasks:&lt;/h3&gt;&quot;);</span>
-<span class="nc bnc" id="L35" title="All 2 branches missed.">        for (String task : tasks) {</span>
-<span class="nc" id="L36">            out.println(&quot;&lt;p&gt;&quot; + task + &quot;&lt;/p&gt;&quot;);</span>
-<span class="nc" id="L37">        }</span>
-<span class="nc" id="L38">    }</span>
+<span class="fc" id="L34">        out.println(&quot;&lt;h3&gt;Tasks:&lt;/h3&gt;&quot;);</span>
+<span class="fc bfc" id="L35" title="All 2 branches covered.">        for (String task : tasks) {</span>
+<span class="fc" id="L36">            out.println(&quot;&lt;p&gt;&quot; + task + &quot;&lt;/p&gt;&quot;);</span>
+<span class="fc" id="L37">        }</span>
+<span class="fc" id="L38">    }</span>
 
     // Add task
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-<span class="nc" id="L45">        String task = request.getParameter(&quot;task&quot;);</span>
+<span class="fc" id="L45">        String task = request.getParameter(&quot;task&quot;);</span>
 
-<span class="nc bnc" id="L47" title="All 4 branches missed.">        if (task != null &amp;&amp; !task.isEmpty()) {</span>
-<span class="nc" id="L48">            tasks.add(task);</span>
+<span class="pc bpc" id="L47" title="2 of 4 branches missed.">        if (task != null &amp;&amp; !task.isEmpty()) {</span>
+<span class="fc" id="L48">            tasks.add(task);</span>
         }
 
-<span class="nc" id="L51">        response.sendRedirect(&quot;todo&quot;);</span>
-<span class="nc" id="L52">    }</span>
+<span class="fc" id="L51">        response.sendRedirect(&quot;todo&quot;);</span>
+<span class="fc" id="L52">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>
