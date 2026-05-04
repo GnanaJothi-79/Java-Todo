@@ -22,10 +22,16 @@ public class TodoServletTest {
 
         when(request.getParameter("task")).thenReturn("Learn DevOps");
 
+        // Mock redirect (important)
+        doNothing().when(response).sendRedirect(anyString());
+
         servlet.doPost(request, response);
 
         assertEquals(1, servlet.tasks.size());
-        assertEquals("Learn DevOps", servlet.tasks.get(0));
+        assertTrue(servlet.tasks.contains("Learn DevOps"));
+
+        // Verify redirect happened
+        verify(response).sendRedirect("todo");
     }
 
     @Test
@@ -44,10 +50,31 @@ public class TodoServletTest {
         servlet.doGet(request, response);
 
         pw.flush();
-
         String output = sw.toString();
 
-        assertTrue(output.contains("Todo List"));
-        assertTrue(output.contains("Task1"));
+        assertAll(
+            () -> assertTrue(output.contains("Todo List")),
+            () -> assertTrue(output.contains("Task1")),
+            () -> assertTrue(output.contains("<form"))
+        );
+    }
+
+    @Test
+    void testEmptyTaskNotAdded() throws Exception {
+        TodoServlet servlet = new TodoServlet();
+
+        HttpServletRequest request = mock(HttpServletRequest.class);
+        HttpServletResponse response = mock(HttpServletResponse.class);
+
+        when(request.getParameter("task")).thenReturn("");
+
+        // Mock redirect
+        doNothing().when(response).sendRedirect(anyString());
+
+        servlet.doPost(request, response);
+
+        assertTrue(servlet.tasks.isEmpty());
+
+        verify(response).sendRedirect("todo");
     }
 }
