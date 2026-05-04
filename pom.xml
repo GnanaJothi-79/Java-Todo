@@ -73,5 +73,12 @@
             target/site/jacoco/jacoco.xml
         </sonar.coverage.jacoco.xmlReportPaths>
     </properties>
+    <distributionManagement>
+    <repository>
+        <id>artifactory</id>
+        <name>addiction-tracker-repo</name>
+        <url>http://localhost:8081/artifactory/addiction-tracker-repo</url>
+    </repository>
+</distributionManagement>
 
 </project>
